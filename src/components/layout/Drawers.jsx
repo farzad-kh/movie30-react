@@ -18,23 +18,23 @@ import Ic from "../../asset/genres/index";
 
 const Drawers = () => {
   const dispatch = useDispatch();
-  const { data, isFetching } = useGetGenresQuery();
+  const { data } = useGetGenresQuery();
   const [genres, setGenres] = useState([]);
 
   const ref = useRef("");
   const [backDropDra, setBackDropDra] = useState(false);
   const [offSetT, setOffsetT] = useState("");
   const [activeClass, setActiveClass] = useState("");
-  const [activeGenres, setActiveGenres] = useState(0);
+
   const { isOpen, setIsOpen, resNav, setResNav, darkMode, setDarkMode } =
     useContext(DrawersContext);
-  const { genresIdOrCategoryName, searchIsActive, genresName } = useSelector(
+  const { searchIsActive, genresName } = useSelector(
     (state) => state.currentGenres
   );
 
   const location = useLocation();
 
-  const redBar = useRef(null);
+
 
   const categoryName = [
     {
@@ -72,7 +72,7 @@ const Drawers = () => {
   let newData = [];
   newData =
     data?.genres?.map((item, i) => {
-      console.log(item);
+  
       return { ...item };
     }) || [];
   newData.unshift(obj);
@@ -101,7 +101,7 @@ const Drawers = () => {
       className="bg-base-100 relative drwers-container   "
     >
       <div
-        className={` w-[250px] h-[100vh] transition-all duration-500  xl:flex bg-base-100  items-center  sticky top-0  xl:translate-x-[0] translate-x-[-250px] 
+        className={` w-[250px]  transition-all duration-500  xl:flex bg-base-100  items-center  sticky top-0  xl:translate-x-[0] translate-x-[-250px] 
      ${
        isOpen
          ? "origin-right  ease-out top-0 sticky bg-white flex z-50  !translate-x-0"
@@ -117,7 +117,6 @@ const Drawers = () => {
               : setBackDropDra(false)
           }
         >
-          {/* bg-[#141415] */}
 
           <div
             className={`navbar z-[999999] pl-4 pr-4  transition-all duration-200   ease-in  text-primary sticky top-0  ${

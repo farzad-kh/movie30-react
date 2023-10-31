@@ -83,12 +83,12 @@ const SwiperSmall = ({ profilePathFilter }) => {
               key={item?.id}
               className="  select-none flex flex-col bg-base-100   max-h-[350px]  cursor-grab overflow-hidden  text-primary "
             >
-              <motion.div
+              <motion.div className="w-full flex-col flex"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.4, duration: 0.5 }}
               >
-                <motion.div className=" skeleton2 aspect-[9/13.5]  rounded-lg overflow-hidden min-h-[94px]  max-h-[179px]">
+                <motion.div className=" skeleton2  aspect-[9/13.5]  rounded-lg overflow-hidden min-h-[94px]  max-h-[179px]">
                   <motion.img
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}

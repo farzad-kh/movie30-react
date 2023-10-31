@@ -11,18 +11,13 @@ export const genresSlice = createSlice({
         genresName: "All Genres",
         mediaType: "movie",
         movieInfoObj: {},
-  
-
-
     },
     reducers: {
         selectGenres: (state, action) => {
-
             state.genresIdOrCategoryName = action.payload
             state.searchIsActive = false
         },
         selectName: (state, action) => {
-
             state.genresName = action.payload
             state.searchIsActive = false
         },
@@ -50,53 +45,28 @@ export const genresSlice = createSlice({
 
         },
         cc: (state) => {
-
-
-
             state.searchQuery = ""
             state.searchIsActive = false
             if (state.searchQuery === "") {
                 state.searchIsActive = false
             }
-
-
         },
         media: (state, action) => {
-
-
             state.mediaType = action.payload
-
-
         },
         selectMovieInfo: (state, action) => {
-
-
-
             state.movieInfoObj = action.payload
-
-
         },
         clearSelectMovieInfo: (state, action) => {
-
-
             state.movieInfoObj = {}
-
-
-
         },
         whatchListData: (state, action) => {
-
-
             state.whatchListRTK = action.payload
-
-
-
         },
         profileClearSearch: (state) => {
             state.searchIsActive = false
             state.searchQuery = ""
         }
-
 
     }
 })

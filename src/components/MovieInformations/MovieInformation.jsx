@@ -28,7 +28,7 @@ const MovieInformation = () => {
     media: media,
   });
 
-  console.log(movieInfoObj,movie);
+
 
 
   const { data, isFetching, isError } = useGetSearchQuery({

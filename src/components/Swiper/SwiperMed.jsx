@@ -163,8 +163,8 @@ const SwiperMed = ({ movieInfo, title, showMore }) => {
             }}
           >
             {movieInfo?.map((item) => (
-              <SwiperSlide className="bg-base-100  ">
-                <Movie movie={item} key={item?.id}></Movie>
+              <SwiperSlide key={item?.id} className="bg-base-100  ">
+                <Movie movie={item} ></Movie>
               </SwiperSlide>
             ))}
           </Swiper>

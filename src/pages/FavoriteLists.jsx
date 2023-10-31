@@ -179,7 +179,7 @@ const FavoriteLists = () => {
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       transition={{ duration: 0.3 }}
-                      className="flex items-center sm-movie-card"
+                      className="grid items-center sm-movie-card justify-center"
                     >
                       <div className="dd  grid gap-x-8 gap-y-12 w-full ">
                         {whatchlistOrFavorite === "all" && (

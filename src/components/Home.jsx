@@ -18,7 +18,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import logo from "../asset/images/iuFNMS8U5cb6xfzi51Dbkovj7vM.jpg";
-console.log(logo);
+
 
 import SwiperLarg from "./Swiper/SwiperLarg";
 import LoadingRow from "./Loading/LoadingRow";

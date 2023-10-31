@@ -5,7 +5,6 @@ import Loading from "../Loading/Loading";
 import MovieList from "../MovieList/MovieList";
 import { useSelector } from "react-redux";
 
-
 import { useNavigate } from "react-router-dom";
 
 const Search = () => {
@@ -18,12 +17,12 @@ const Search = () => {
   });
 
   const onlyMovieOrSeries =
-    data?.results?.filter((item) =>
-      item?.media_type === "tv" ||
-      (item?.media_type === "movie" && item?.poster_path !== null)
-        ? item
-        : ""
+    data?.results?.filter(
+      (item) =>
+        (item?.media_type === "tv" || item?.media_type === "movie") &&
+        item?.poster_path !== null
     ) || [];
+
   const [searchData, setSearchData] = useState([]);
   const backNavigate = useNavigate();
 

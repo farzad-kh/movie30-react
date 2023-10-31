@@ -2,17 +2,17 @@ import React, { useEffect, useState } from "react";
 import { useGetAllGenresQuery } from "../../services/tmdbSlice";
 import MovieList from "../MovieList/MovieList";
 import { motion } from "framer-motion";
-import "react-loading-skeleton/dist/skeleton.css";
+
 import Loading from "../Loading/Loading";
-import { useDispatch, useSelector } from "react-redux";
-import { increment } from "../../features/currentGenres ";
-import { decrement } from "../../features/currentGenres ";
+import { useSelector } from "react-redux";
+
 import Search from "../Search/Search";
-//icons
-import { MdArrowForwardIos, MdArrowBackIosNew } from "react-icons/md";
+
+
+import Pagination from "../module/Pagination";
 const MoviesGenres = () => {
  
-  const dispatch = useDispatch();
+  
 
   const {
     genresIdOrCategoryName,
@@ -45,17 +45,6 @@ const MoviesGenres = () => {
     setPopularData(newDataFilter);
   }, [data]);
 
-  const pervPageHandler = (e) => {
-    if (page <= 1) {
-     return;
-    } else {
-      dispatch(decrement());
-    }
-  };
-  const nextPageHandler = () => {
-    setPopularData([]);
-    dispatch(increment());
-  };
 
 
 
@@ -87,33 +76,7 @@ const MoviesGenres = () => {
 
             <MovieList movies={popularData} isFetching={isFetching} />
 
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.5, duration: 0.5 }}
-              className="join flex justify-center gap-x-5 items-center mt-14  "
-            >
-              <a
-                href="#movie"
-                onClick={pervPageHandler}
-                className={`${
-                  page <= 1 &&
-                  "pointer-events-none opacity-[0.75] shadow-none bg-[#2d3134a3]"
-                } h-[45px] min-h-[45px] pl-[5px]  min-w-[86px] shadow-[#182436c7] shadow-sm btn text-base  btn-neutral normal-case px-[12px]  rounded-[5px]`}
-              >
-                <MdArrowBackIosNew />
-                Prev
-              </a>
-              <div className="text-lg text-primary font-semibold">{page}</div>
-              <a
-                href="#movie"
-                onClick={nextPageHandler}
-                className="  btn text-base pr-[5px]  min-w-[86px] font-semibold  h-[45px] min-h-[45px] btn-neutral normal-case px-[12px] shadow-sm shadow-[#182436c7] rounded-[5px]"
-              >
-                Next
-                <MdArrowForwardIos />
-              </a>
-            </motion.div>
+            <Pagination page={page} DataMovies={setPopularData} />
           </motion.div>
         )}
       </motion.section>

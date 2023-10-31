@@ -122,7 +122,7 @@ const refreshWhatchList=()=>{
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.5, duration: 0.3 }}
-              className="w-full h-full  flex justify-center items-center "
+              className="w-full h-full  flex justify-center items-center  "
             >
               <div className="xl:p-10 lg:p-9 md:p-7 p-5 main w-full text-left">
                 <h3 className="block text-primary sm:text-3xl text-[22px]    pb-10">
@@ -178,7 +178,7 @@ const refreshWhatchList=()=>{
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       transition={{ duration: 0.3 }}
-                      className="flex items-center sm-movie-card"
+                      className="items-center sm-movie-card  justify-center grid"
                     >
                       <div className="dd  grid gap-x-8 gap-y-12 w-full ">
                         {whatchlistOrFavorite === "all" && (
