@@ -6,8 +6,8 @@ const LoadingRow = ({ minHeight }) => {
   const { isOpen, setIsOpen, darkMode } = useContext(DrawersContext);
   return (
     <div
-      style={{ minHeight: `${minHeight}vh` }}
-      className={` ${minHeight && "sm:min-h-[590px] min-h-[700px]"} w-full p-7 mt-6 flex justify-center    elative top-2 `}
+    
+      className={` ${minHeight && "sm:min-h-[660vh] min-h-[800vh]"} w-full p-7 mt-6 flex justify-center  elative top-2 `}
     >
       <span
         className={`${darkMode ? styles.loaderRow : styles.loaderRowLight}  `}

@@ -121,12 +121,15 @@ const Navbar = () => {
           </motion.div>
         )}
 
-        <div className=" gap-2 w-full   ">
+        <section className=" gap-2 w-full   ">
           <div className="form-control relative  sm:w-[259px]  w-[210px] ">
+          
             <input
-              onChange={(e) => dispatch(searchInput(e.target.value))}
+     
+              onChange={(e) => dispatch(searchInput(e.target.value.trim()))}
               value={searchQuery}
-              type="text"
+              type="email" title="serach"  autocomplete="off"
+
               placeholder="Search Movies & Shows ..."
               className="input input-bordered sm:h-12 h-11 md:w-auto text-sm  "
             />
@@ -140,7 +143,7 @@ const Navbar = () => {
               </motion.div>
             )}
           </div>
-        </div>
+        </section>
      <DropDownMenu  darkMode={darkMode}/>
 
         <PopUp />

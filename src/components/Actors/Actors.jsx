@@ -52,6 +52,7 @@ const Actors = () => {
 
   const handlePageClick = (event) => {
     window.scrollTo(0, offsetTop);
+    window.moveTo(0, offsetTop);
     setCurrentItems([]);
 
     setVal(event.selected + 1);
@@ -59,12 +60,11 @@ const Actors = () => {
 
     setItemOffset(newOffset);
   };
-
+ 
   useEffect(() => {
     // window.onresize = () => {
     //   setOffsetTop(ref?.current?.offsetTop);
     // }
-  
     const endOffset = itemOffset + itemsPerPage;
     setTimeout(
       () => setCurrentItems(filterMovies.slice(itemOffset, endOffset)),
@@ -119,9 +119,8 @@ const Actors = () => {
             }
             nextLabel={false}
             onPageChange={handlePageClick}
-            hrefBuilder={(page, pageCount, selected) =>
-              page >= 1 && page <= pageCount && `#search`
-            }
+          
+          
             pageRangeDisplayed={3}
             pageCount={pageCount}
             // previousLabel={<HiChevronLeft className="hover:bg-transparent bg-transparent text-xl"/>}
@@ -136,6 +135,7 @@ const Actors = () => {
             pageLinkClassName={`text-secondary p-[19px] w-[36px] h-[36px]  text-center cursor-pointer flex z-[50] overflow-hidden items-center justify-center `}
             disabledLinkClassName="disable-page"
             marginPagesDisplayed={1}
+            
             breakClassName={`pointer-events-none text-secondary `}
             pageClassName={` ${darkMode ? "li-dark" : "li-light"}`}
           />

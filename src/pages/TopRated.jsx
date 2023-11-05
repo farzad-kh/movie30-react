@@ -29,6 +29,8 @@ const TopRated = () => {
 
   useEffect(() => {
     setTopRatedData(newData);
+
+    
   }, [data]);
 
   if (searchQuery?.length > 0 && searchIsActive) return <Search />;

@@ -1,5 +1,3 @@
- ///this components for search ui
-
 import React, { useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Movie from "../Movie/Movie";
@@ -27,23 +25,19 @@ const MovieList = ({ movies, isFetching, refetch }) => {
 
   return (
     <motion.div
-      className="  flex justify-center items-center  flex-col sm-movie-card"
- 
+      className="flex items-center justify-center sm-movie-card"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ delay: 0.55, duration: 0.55 }}
-   
     >
       <AnimatePresence>
         <motion.div
-  
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-        
           className={`${
             searchIsActive
-              ? "dd grid gap-x-8 md:gap-y-12 gap-y-4 w-full justify-center self-center !cursor-default"
+              ? "dd grid sm:gap-x-8 gap-x-6 md:gap-y-12 gap-y-4 w-full justify-center self-center !cursor-default"
               : "!cursor-default self-center dd grid gap-x-8 gap-y-12   "
           }`}
         >

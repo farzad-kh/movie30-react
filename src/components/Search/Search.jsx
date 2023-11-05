@@ -12,7 +12,7 @@ const Search = () => {
     (state) => state.currentGenres
   );
 
-  const { data, isFetching, isLoading, isError } = useGetSearchQuery({
+  const { data, isFetching } = useGetSearchQuery({
     searchQuery: searchQuery,
   });
 
@@ -20,11 +20,13 @@ const Search = () => {
     data?.results?.filter(
       (item) =>
         (item?.media_type === "tv" || item?.media_type === "movie") &&
-        item?.poster_path !== null
+        item?.poster_path !== null &&
+        item.media_type !== "person"
     ) || [];
 
   const [searchData, setSearchData] = useState([]);
   const backNavigate = useNavigate();
+  const [notFound, setNotFound] = useState(false);
 
   useEffect(() => {
     setSearchData(onlyMovieOrSeries);
@@ -32,11 +34,12 @@ const Search = () => {
     if (!searchIsActive && searchQuery === "") {
       backNavigate(-1);
     }
+    if (searchData?.length === 0 || searchIsActive && searchQuery.length > 0) {
+      setTimeout(() => setNotFound(true), 2010);
+    } else {
+     setNotFound(false)
+    }
   }, [data]);
-
-  const person = !!data?.results?.filter(
-    (item) => item.media_type === "person"
-  );
 
   return (
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
@@ -46,27 +49,21 @@ const Search = () => {
         transition={{ delay: 0.1, duration: 0.3 }}
         className="xl:p-10 lg:p-9 md:p-7 p-5 main"
       >
-        {person &&
-        searchData?.length === 0 &&
+        {searchData?.length === 0 &&
         searchIsActive &&
         searchQuery.length > 0 ? (
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.2, duration: 0.3 }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.2, duration: 0.3 }}
           >
             <div className="w-full sm:text-lg text-base text-primary">
-              No results found for "{searchQuery}" 🙄
+              {notFound && ` No results found for ${searchQuery} 🙄`}
             </div>
           </motion.div>
         ) : (
           <>
             <div id="movie" className="h-[20px] top-[-55px] relative "></div>
-            <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-            ></motion.div>
 
             {isFetching ? (
               <Loading color={"text-base-content"} />

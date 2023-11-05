@@ -6,10 +6,10 @@ import moment from "moment";
 import { differenceInYears } from "date-fns";
 import LoadingRow from "../Loading/LoadingRow";
 import Movie from "../Movie/Movie";
+import MovieCardContainer from "../layout/MovieCardContainer";
 const Biography = ({ actors, isError, currentItems, setOffsetTop }) => {
   const formattedDate = moment(actors?.birthday).format("MMMM DD, YYYY");
   const formattedDeathday = moment(actors?.deathday).format("MMMM DD, YYYY");
-  
 
   const date = new Date();
   const birth = new Date(actors?.birthday);
@@ -165,7 +165,7 @@ const Biography = ({ actors, isError, currentItems, setOffsetTop }) => {
         className="flex flex-col min-h-[100vh]  "
       >
         <div>
-          <h3
+          <h3 id="Filmography"
             ref={ref}
             className=" sm:ml-3 ml-0 sm:text-3xl text-[26px] font-semibold text-primary  pb-10  "
           >
@@ -175,20 +175,22 @@ const Biography = ({ actors, isError, currentItems, setOffsetTop }) => {
           {isError ? (
             <div className="ml-4 text-xl text-red-400">Error 502</div>
           ) : currentItems?.length == 0 ? (
-            <LoadingRow minHeight={660} />
+            <LoadingRow minHeight />
           ) : (
-            <div className="w-full flex items-center sm-movie-card ">
+           
               <motion.div
-                className="md:px-6 sm:px-4 px-0  dd grid gap-x-8 md:gap-y-12 gap-y-4 w-full justify-center"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.5, duration: 0.4 }}
+                className="items-center sm-movie-card  flex "
               >
-                {currentItems?.map((item, i) => (
-                  <Movie movie={item} key={item.id} />
-                ))}
+                <MovieCardContainer>
+                  {currentItems?.map((item, i) => (
+                    <Movie movie={item} key={item.id} />
+                  ))}
+                </MovieCardContainer>
               </motion.div>
-            </div>
+
           )}
         </div>
       </motion.div>
