@@ -35,7 +35,7 @@ const MovieAddList = ({ movie }) => {
   // Fetch users watchlist and favorite list for the movie
   const addToWatchListsHandler = async () => {
     setIsMovieWatchlisted(whatchListTrueOrFalse);
-
+   
     await addToWatchLists(
       sessionId,
       movie?.media_type,
@@ -47,6 +47,7 @@ const MovieAddList = ({ movie }) => {
   };
 
   const addToFavoritesHandler = async () => {
+  
     setIsMovieFavorited(favoriteTrueOrFalse);
 
     await addToFavorites(

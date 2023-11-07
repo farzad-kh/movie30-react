@@ -46,7 +46,7 @@ const ModalYoutube = ({ playTrailer, setPlayTrailer, trailer }) => {
             className="w-full h-full z-[0] outline-none "
             title="Trailer"
             src={`https://www.youtube.com/embed/${trailer}?autoplay=1`}
-            frameborder="0"
+            frameBorder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowFullScreen="1"
           />

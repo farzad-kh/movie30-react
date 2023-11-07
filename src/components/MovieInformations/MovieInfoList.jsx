@@ -23,7 +23,7 @@ import { useInView } from "framer-motion";
 import FilmMoreInfo from "../module/MovieMoreInfo/FilmMoreInfo";
 import MoviePosterInfo from "../module/MoviePosterInfo";
 
-const MovieInfoList = ({ movieInfo, serieInfo, media, id }) => {
+const MovieInfoList = ({ movieInfo, media, id }) => {
   const sessionId = localStorage.getItem("session_id");
   const accountId = localStorage.getItem("accountId");
   const ref = useRef(null);
@@ -110,14 +110,15 @@ const MovieInfoList = ({ movieInfo, serieInfo, media, id }) => {
   );
 
   const addToWatchListsHandler = async (e) => {
+
     setIsMovieWatchlisted(whatchListTrueOrFalse);
-    await addToWatchLists(sessionId, media, id, accountId, isMovieWatchlisted);
+    await addToWatchLists(sessionId, media, movieInfo?.id, accountId, isMovieWatchlisted);
     refetchWhatchList();
   };
 
   const addToFavoritesHandler = async () => {
     setIsMovieFavorited(favoriteTrueOrFalse);
-    await addToFavorites(sessionId, media, id, accountId, isMovieFavorited);
+    await addToFavorites(sessionId, media,  movieInfo?.id, accountId, isMovieFavorited);
     refetchFavorite();
   };
   const [totalPage, setTotalPage] = useState(0);
@@ -174,8 +175,8 @@ const MovieInfoList = ({ movieInfo, serieInfo, media, id }) => {
                 {" "}
                 {movieInfo?.title}{" "}
                 {(movieInfo?.["release_date"] &&
-                  movieInfo?.["release_date"]?.slice(0, 4)) ||
-                  serieInfo?.["first_air_date"]?.slice(0, 4)}
+                  movieInfo?.["release_date"]?.slice(0, 4))
+                 }
               </h1>
 
               {/* note:its may fill with some info */}

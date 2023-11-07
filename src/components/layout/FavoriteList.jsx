@@ -1,6 +1,7 @@
 import React, { useRef ,useState} from 'react';
 import { motion } from 'framer-motion';
 import Movie from '../Movie/Movie';
+import MovieCardContainer from './MovieCardContainer';
 const FavoriteList = ({tv,newFavoriteList,refetchFavoriteList ,refetchFavoriteListTv}) => {
     const [activeFilterBar, setActiveFilterBar] = useState("");
     const [whatchlistOrFavorite, setWhatchlistOrFavorite] = useState("all");
@@ -104,9 +105,11 @@ const FavoriteList = ({tv,newFavoriteList,refetchFavoriteList ,refetchFavoriteLi
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.3 }}
-                className="grid items-center sm-movie-card justify-center"
+                className="flex items-center sm-movie-card justify-normal "
               >
-                <div className="dd  grid gap-x-8 gap-y-12 w-full ">
+          <MovieCardContainer>
+
+        
                   {whatchlistOrFavorite === "all" && (
                     <>
                       {newFavoriteList?.map((item) => (
@@ -144,7 +147,7 @@ const FavoriteList = ({tv,newFavoriteList,refetchFavoriteList ,refetchFavoriteLi
                       )}
                     </>
                   )}
-                </div>
+                </MovieCardContainer>
               </motion.div>
             </>
           )}
