@@ -37,7 +37,7 @@ const Home = () => {
 
   const [topRated, setTopRated] = useState([]);
   const [alert, setAlert] = useState(true) 
-if(alert)setTimeout(()=>setAlert(false),5000)
+if(alert)setTimeout(()=>setAlert(false),10*1000)
   const newData = data?.results?.map((item) => {
     let isMovieOrTv = {
       ...(item.title ? { media_type: "movie" } : { media_type: "tv" }),
