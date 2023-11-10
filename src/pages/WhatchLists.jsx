@@ -42,7 +42,7 @@ const WhatchLists = () => {
     listName: "watchlist",
     media: "tv",
     sessionId: sessionId,
-    page: 1,
+    
   });
 
   const [newWhatchList, setNewWhatchList] = useState([]);

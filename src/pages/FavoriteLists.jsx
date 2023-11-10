@@ -44,7 +44,7 @@ const FavoriteLists = () => {
     listName: "favorite",
     media: "tv",
     sessionId: sessionId,
-    page: 1,
+   
   });
 
   const [newFavoriteList, setNewFavoriteList] = useState([]);

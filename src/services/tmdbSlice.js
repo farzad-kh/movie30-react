@@ -211,8 +211,8 @@ export const tmdbSlice = createApi({
         method: 'GET',
 
         //  url:"movie/popular",
-        url: `https://api.themoviedb.org/3/${media_type}/popular`,
-        params: {language: 'en-US', page: page},
+        url: `${media_type}/popular`,
+        params: { language: 'en-US', page: page },
 
         headers: tmdbApiHeaders
 
@@ -281,8 +281,8 @@ export const tmdbSlice = createApi({
 
       query: ({ accountId, listName, media, sessionId, page }) => ({
         method: 'GET',
-        url: `https://api.themoviedb.org/3/account/${accountId}/${listName}/${media}?sort_by=created_at.desc`,
-        params: { page: page, session_id: sessionId },
+        url: `account/${accountId}/${listName}/${media}`,
+        params: { language: 'en-US', session_id:sessionId.toLocaleString(), page:1, sort_by: 'created_at.desc' },
 
         headers: tmdbApiHeaders,
 
@@ -292,8 +292,8 @@ export const tmdbSlice = createApi({
 
       query: ({ accountId, listName, media, sessionId, page }) => ({
         method: 'GET',
-        url: `https://api.themoviedb.org/3/account/${accountId}/${listName}/${media}?sort_by=created_at.desc`,
-        params: { page: page, session_id: sessionId },
+        url: `account/${accountId}/${listName}/${media}?sort_by=created_at.desc`,
+        params: { page: 1, session_id:sessionId.toLocaleString()},
 
         headers: tmdbApiHeaders,
 
@@ -301,10 +301,10 @@ export const tmdbSlice = createApi({
     }),
     getActorList: builder.query({
 
-      query: ({ id}) => ({
+      query: ({ id }) => ({
         method: 'GET',
-        url: `https://api.themoviedb.org/3/person/${id}`,
-        params: {append_to_response: 'external_ids,combined_credits,images,movie_credits,tv_credits'},
+        url: `person/${id}`,
+        params: { append_to_response: 'external_ids,combined_credits,images,movie_credits,tv_credits' },
         headers: tmdbApiHeaders,
 
       })
@@ -337,8 +337,8 @@ export const {
   useGetSeriesInformationsQuery,
   useGetRecommendedQuery,
   useGetListQuery,
- useGetListTvQuery,
- useGetActorListQuery,
- useGetTvPopularQuery
+  useGetListTvQuery,
+  useGetActorListQuery,
+  useGetTvPopularQuery
 
 } = tmdbSlice

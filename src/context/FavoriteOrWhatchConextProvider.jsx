@@ -32,6 +32,7 @@ const FavoriteOrWhatchConextProvider = ({ children }) => {
 
     try {
       const response = await axios.request(options);
+     
     } catch (error) {
       console.error(error);
     }
@@ -63,6 +64,7 @@ const FavoriteOrWhatchConextProvider = ({ children }) => {
 
     try {
       const response = await axios.request(options);
+  
     } catch (error) {
       console.error(error);
     }

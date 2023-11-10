@@ -36,8 +36,8 @@ const Home = () => {
   );
 
   const [topRated, setTopRated] = useState([]);
-  const [alert, setAlert] = useState(true) 
-if(alert)setTimeout(()=>setAlert(false),10*1000)
+
+
   const newData = data?.results?.map((item) => {
     let isMovieOrTv = {
       ...(item.title ? { media_type: "movie" } : { media_type: "tv" }),
@@ -84,26 +84,7 @@ if(alert)setTimeout(()=>setAlert(false),10*1000)
           transition={{ delay: 0.55, duration: 0.55 }}
           className=" items-center flex-col w-full gap-y-4 flex"
         >
-      {alert && 
-          <div className="alert alert-error w-[75%]">
-          <div onClick={()=>setAlert(false)}>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="stroke-current shrink-0 h-6 w-6"
-              fill="none"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
-              />
-            </svg>
-          </div>
-          <span>If the loading speed is slow or there are issues with saving the movies or series, the problem is related to the API.</span>
-        </div>
-      }
+   
           <div className="w-full xl:max-w-[1280px]  lex justify-center mb-8">
             <SwiperLarg moviesOrseries={newData?.slice(0, 10)} />
           </div>
