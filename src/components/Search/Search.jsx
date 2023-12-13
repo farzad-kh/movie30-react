@@ -34,11 +34,13 @@ const Search = () => {
     if (!searchIsActive && searchQuery === "") {
       backNavigate(-1);
     }
-    if (searchData?.length === 0 || searchIsActive && searchQuery.length > 0) {
-      setTimeout(() => setNotFound(true), 2010);
-    } else {
-     setNotFound(false)
-    }
+    const timeout = setTimeout(() => {
+      if (searchData.length === 0 && searchIsActive && searchQuery.length > 0) {
+        setNotFound(true);
+      }
+    }, 2000);
+  
+    return () => clearTimeout(timeout);
   }, [data]);
 
   return (

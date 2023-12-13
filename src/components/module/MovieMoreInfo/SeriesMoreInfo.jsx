@@ -1,17 +1,16 @@
 import React, { useContext, useState } from "react";
-import { DrawersContext } from "../../../context/DrawersContextProvider";
-import ModalYoutube from "../../layout/ModalYoutube";
 
 import { BsStarFill, BsDot, BsYoutube } from "react-icons/bs";
 import { MdLanguage } from "react-icons/md";
-import { PiLinkSimpleLight } from "react-icons/pi";
+
 import { TbChairDirector } from "react-icons/tb";
 import { HiOutlineBookOpen } from "react-icons/hi";
-import { FaInstagram, FaImdb } from "react-icons/fa";
+
 
 import { RiMovie2Line } from "react-icons/ri";
 import { TbLanguage } from "react-icons/tb";
 import { MdOutlineStarRate } from "react-icons/md";
+import ExternalTooltip from "./ExternalTooltip";
 
 const SeriesMoreInfo = ({ movieInfo, seriesPG, children, type }) => {
   const director =
@@ -40,18 +39,8 @@ const SeriesMoreInfo = ({ movieInfo, seriesPG, children, type }) => {
   const minutes = time % 60;
   const starsCasts = movieInfo?.credits?.cast.slice(0, 3);
 
-  const { darkMode } = useContext(DrawersContext);
-  const [playTrailer, setPlayTrailer] = useState(false);
 
-  const officialTrailer = movieInfo?.videos?.results.filter((item) =>
-    item.name === "Official Trailer" ||
-    item.name === "Official Trailer 2" ||
-    item.name === "Official Trailer #2" ||
-    item.name === "Teaser Trailer" ||
-    item.name === "Teaser Trailer 2" ||
-    item.name === "Teaser Trailer #2"
-    
-  );
+
 
   return (
     <div>
@@ -283,74 +272,7 @@ const SeriesMoreInfo = ({ movieInfo, seriesPG, children, type }) => {
         )}
         {children}
 
-        <figure
-          className={`${
-            darkMode ? "wrapper-icon-bg-dark" : "wrapper-icon-bg-ligth"
-          } wrapper flex items-center font-semibold text-base    gap-y-2 flex-wrap   mt-3`}
-        >
-          {movieInfo?.external_ids?.instagram_id && (
-            <>
-              <a
-                className="icon instagram"
-                target="_blank"
-                href={
-                  `https://www.instagram.com/${movieInfo?.external_ids?.instagram_id}` ||
-                  ""
-                }
-              >
-                <span className="tooltip">Instagram</span>
-
-                <FaInstagram className="text-[40px] absolute h-[21px] hover:text-[#efefef] " />
-              </a>
-            </>
-          )}
-          {movieInfo?.external_ids?.imdb_id && (
-            <>
-              <a
-                className="icon imdb"
-                target="_blank"
-                href={`https://www.imdb.com/title/${movieInfo?.external_ids?.imdb_id}`}
-              >
-                <span className="tooltip">Imdb</span>
-                <FaImdb className="text-[40px] absolute h-[21px]  hover:text-[#efefef] " />
-              </a>
-            </>
-          )}
-          {movieInfo?.homepage && (
-            <>
-              <a
-                className="icon weblink"
-                target="_blank"
-                href={`${movieInfo?.homepage}`}
-              >
-                <span className="tooltip">Website</span>
-                <PiLinkSimpleLight className="text-[40px] absolute h-[21px] hover:text-[#efefef] " />
-              </a>
-            </>
-          )}
-
-          {movieInfo?.videos?.results?.length !== 0 && (
-            <>
-              <a
-                className="cursor-pointer icon youtube"
-                target="_blank"
-                onClick={() => setPlayTrailer(true)}
-              >
-                <span className="tooltip">Trailer</span>
-                <BsYoutube className="text-[40px] absolute h-[21px] hover:text-[#efefef] " />
-              </a>
-              <ModalYoutube
-                playTrailer={playTrailer}
-                setPlayTrailer={setPlayTrailer}
-                trailer={
-                  officialTrailer?.[0]?.key === undefined
-                    ? movieInfo?.videos?.results?.[0]?.key
-                    : officialTrailer?.[0]?.key
-                }
-              />
-            </>
-          )}
-        </figure>
+    <ExternalTooltip externalId={movieInfo}/>
       </div>
     </div>
   );

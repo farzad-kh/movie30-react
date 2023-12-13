@@ -12,28 +12,19 @@ import { FavoriteOrWhatchConext } from "../../context/FavoriteOrWhatchConextProv
 
 import { HiChevronLeft } from "react-icons/hi";
 
-import {
-  AiOutlineInfoCircle,
-  AiOutlineHeart,
-  AiTwotoneHeart,
-} from "react-icons/ai";
-
-//
-
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/pagination";
-
 import "swiper/css/navigation";
 import SwiperSmall from "../Swiper/SwiperSmall";
 import SwiperMed from "../Swiper/SwiperMed";
 import LoadingRow from "../Loading/LoadingRow";
 import { DrawersContext } from "../../context/DrawersContextProvider";
-
 import { useInView } from "framer-motion";
 import SeriesMoreInfo from "../module/MovieMoreInfo/SeriesMoreInfo";
 import SeriePosterInfo from "../module/SeriePosterInfo";
+import AddOrRemoveFavorits from "../module/AddOrRemoveFavorits";
 
 const MovieInfoList = ({ serieInfo, media, id }) => {
   const sessionId = localStorage.getItem("session_id");
@@ -87,9 +78,6 @@ const MovieInfoList = ({ serieInfo, media, id }) => {
   } = useContext(FavoriteOrWhatchConext);
 
   const { darkMode } = useContext(DrawersContext);
-
-  ////
-
   let seriesPG =
     serieInfo?.content_ratings?.results.find((item) =>
       item?.iso_3166_1 === "US" ? item : ""
@@ -161,7 +149,6 @@ const MovieInfoList = ({ serieInfo, media, id }) => {
           } blur-[2.3px] brightness-[0.29] rounded  z-[-1] overflow-hidden absolute  object-cover h-[820px]  w-full bg-cover bg-no-repeat bg-center  `}
         ></motion.div>
       </div>
-
       <section className="relative    xl:p-8 p-[24px] main    ">
         <button
           className=" sm:mb-3 mb-[20px] active:scale-95 sm:text-[26px] text-[24px] text-secondary transition-all hover:text-info  hover:bg-secondary rounded-full  backdrop-blur-sm  flex items-center self-center"
@@ -184,8 +171,6 @@ const MovieInfoList = ({ serieInfo, media, id }) => {
                   serieInfo?.["first_air_date"] !== null &&
                   serieInfo?.["first_air_date"]?.slice(0, 4)}
               </h1>
-
-              {/* note:its may fill with some info */}
               <div className="italic text-[0.94rem] leading-[1.4] title-3 font-semibold ">
                 {serieInfo?.tagline}
               </div>
@@ -196,79 +181,15 @@ const MovieInfoList = ({ serieInfo, media, id }) => {
               movieInfo={serieInfo}
               type={"series"}
             >
-              <div className=" mt-1 mb-[40px]">
-                {favorites?.results?.length >= 20 && !isMovieFavorited ? (
-                  <button
-                    onClick={() => setShowErr(true)}
-                    className=" hover:bg-[#8f2f2f] normal-case text-sm  !transition-none  backdrop-blur-md  text-slate-300  backdrop-brightness-[1.4] p-[8px] rounded-md  text-[0.9rem] font-semibold 	 relative btn bg-[#2d2c2cbd] pr-[10px] pl-[10px] min-h-[40px] h-[40px] border "
-                  >
-                    <AnimatePresence>
-                      {showErr && (
-                        <motion.p
-                          initial={{ opacity: 0 }}
-                          animate={{ opacity: 1 }}
-                          exit={{ opacity: 0 }}
-                        >
-                          Can't add more than 20 movies
-                        </motion.p>
-                      )}
-                    </AnimatePresence>
-                    <AiOutlineInfoCircle className="text-lg" />
-                  </button>
-                ) : (
-                  <>
-                    {isMovieFavorited ? (
-                      FavoritesLoading ? (
-                        <motion.button className="text-[0.9rem] btn  backdrop-blur-md backdrop-brightness-[1.4] p-[8px] rounded-md font-semibold 	capitalize relative  bg-[#2d2c2cbd] hover:bg-[#242525]  text-slate-300   pr-[10px] pl-[10px] min-h-[40px] h-[40px] border border-secondary">
-                          <span className={`mx-3 loader `}></span>
-                        </motion.button>
-                      ) : (
-                        <AnimatePresence>
-                          <motion.button
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            exit={{ opacity: 0 }}
-                            onClick={addToFavoritesHandler}
-                            className={`${
-                              darkMode
-                                ? " hover:bg-[#242525]  bg-[rgba(0,0,0,.3)] "
-                                : "bg-[#ededed] text-[#2d2c2c] hover:bg-[#e4e4e4]"
-                            }text-slate-300  backdrop-brightness-[1.4] p-[8px] font-normal  !transition-none  rounded-md sm:text-base text-sm   normal-case	relative btn backdrop-blur-[3px] pr-[10px] pl-[10px] min-h-[40px] h-[40px] border border-secondary`}
-                          >
-                            Favorite
-                            <AiTwotoneHeart className="w-5 h-5 fill-red-700" />
-                          </motion.button>
-                        </AnimatePresence>
-                      )
-                    ) : FavoritesLoading ? (
-                      <button className=" hover:bg-[#242525]   backdrop-blur-md  text-slate-300  backdrop-brightness-[1.4] p-[8px] rounded-md  text-[0.9rem] font-semibold 	capitalize relative btn bg-[#2d2c2cbd] pr-[10px] pl-[10px] min-h-[40px] h-[40px] border border-secondary">
-                        <span className={` mx-3 loader `}></span>
-                      </button>
-                    ) : (
-                      <AnimatePresence>
-                        <motion.button
-                          initial={{ opacity: 0 }}
-                          animate={{ opacity: 1 }}
-                          exit={{ opacity: 0 }}
-                          onClick={
-                            sessionId === null && accountId === null
-                              ? () => navigateLogin("/login-or-signUp")
-                              : addToFavoritesHandler
-                          }
-                          className={`${
-                            darkMode
-                              ? " hover:bg-[#242525]  bg-[rgba(0,0,0,.3)] "
-                              : "bg-[#ededed] text-[#2d2c2c] hover:bg-[#e4e4e4]"
-                          }text-slate-300  backdrop-brightness-[1.4] p-[8px] rounded-md sm:text-base text-sm font-normal !transition-none   normal-case	relative btn backdrop-blur-[3px] pr-[10px] pl-[10px] min-h-[40px] h-[40px] border border-secondary`}
-                        >
-                          Add to Favorite
-                          <AiOutlineHeart className="w-5 h-5" />
-                        </motion.button>
-                      </AnimatePresence>
-                    )}
-                  </>
-                )}
-              </div>
+              <AddOrRemoveFavorits
+                favorites={favorites}
+                sessionId={sessionId}
+                accountId={accountId}
+                addToFavoritesHandler={addToFavoritesHandler}
+                isMovieFavorited={isMovieFavorited}
+                FavoritesLoading={FavoritesLoading}
+                darkMode={darkMode}
+              />
             </SeriesMoreInfo>
 
             <div className="flex mt-4 mb-8 font-semibold flex-wrap gap-y-6">
@@ -287,9 +208,6 @@ const MovieInfoList = ({ serieInfo, media, id }) => {
                 </div>
               ))}
             </div>
-
-            {}
-
             <div className="text-primary w-full pr-7  max-w-[828px] text-base leading-[1.6] mt-12 ">
               <h3>{serieInfo?.overview}</h3>
             </div>
@@ -302,12 +220,10 @@ const MovieInfoList = ({ serieInfo, media, id }) => {
             isMovieWatchlisted={isMovieWatchlisted}
           />
         </div>
-
         <div className=" items-center block select-none mt-6 movie-info-list ">
           {profilePathFilter?.length !== 0 && (
             <SwiperSmall profilePathFilter={profilePathFilter} />
           )}
-
           <div className="mt-8" ref={refSeries}>
             {data?.results?.length === 0 || isLoadingRecommended ? (
               ""

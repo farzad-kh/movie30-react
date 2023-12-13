@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Movie from "../Movie/Movie";
 import { useSelector, useDispatch } from "react-redux";
+import MovieCardContainer from "../layout/MovieCardContainer";
 
 const MovieList = ({ movies, isFetching, refetch }) => {
   const { searchQuery, searchIsActive } = useSelector(
@@ -35,15 +36,14 @@ const MovieList = ({ movies, isFetching, refetch }) => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className={`${
-            searchIsActive
-              ? "dd grid sm:gap-x-8 gap-x-6 md:gap-y-12 gap-y-4 w-full justify-center self-center !cursor-default"
-              : "!cursor-default self-center dd grid gap-x-8 gap-y-12   "
-          }`}
+          className="w-full"
         >
+          <MovieCardContainer  searchIsActive={searchIsActive}>
+
           {onlyMovieOrSeries?.map((item, i) => (
             <Movie key={i} movie={item} index={i} isFetching={isFetching} />
-          ))}
+            ))}
+            </MovieCardContainer>
         </motion.div>
       </AnimatePresence>
     </motion.div>

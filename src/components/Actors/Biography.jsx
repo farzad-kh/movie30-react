@@ -167,7 +167,7 @@ const Biography = ({ actors, isError, currentItems, setOffsetTop }) => {
         <div>
           <h3 id="Filmography"
             ref={ref}
-            className=" sm:ml-3 ml-0 sm:text-3xl text-[26px] font-semibold text-primary  pb-10  "
+            className="  sm:text-3xl text-[26px] font-semibold text-primary  pb-10  "
           >
             Filmography
           </h3>
@@ -182,7 +182,7 @@ const Biography = ({ actors, isError, currentItems, setOffsetTop }) => {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.5, duration: 0.4 }}
-                className="items-center sm-movie-card  flex "
+                className="flex items-center justify-center sm-movie-card "
               >
                 <MovieCardContainer>
                   {currentItems?.map((item, i) => (
