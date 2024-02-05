@@ -54,7 +54,7 @@ const Drawers = () => {
     },
   ];
 
-  const borderFlow = (i, item) => {
+  const chengeGenreHandler = (i, item) => {
     window.scrollTo(0, 0);
 
     setIsOpen(false);
@@ -66,7 +66,7 @@ const Drawers = () => {
   };
 
   let obj = {
-    id: "popular",
+    id: "",
     name: "All Genres",
   };
   let newData = [];
@@ -195,7 +195,7 @@ const Drawers = () => {
                         : ""
                     }      w-full z-50  select-none  ease-out pl-[1.9rem] py-2  flex text-sm text-base-content   group-hover:text-primary`}
                     onClick={() => {
-                      borderFlow(item?.label, item);
+                      chengeGenreHandler(item?.label, item);
                     }}
                     to={item?.path}
                   >
@@ -243,7 +243,7 @@ const Drawers = () => {
                   <Link
                     hrefLang="#movie"
                     onClick={() => {
-                      borderFlow(i, item);
+                      chengeGenreHandler(i, item);
                       dispatch(selectName(item.name));
                     }}
                     to="/movies/genres"
