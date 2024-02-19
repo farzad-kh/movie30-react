@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from "react";
 import { useLocation, Link } from "react-router-dom";
-import { motion,AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { CgProfile } from "react-icons/cg";
 import { BsBookmarks } from "react-icons/bs";
 import { AiOutlineHeart } from "react-icons/ai";
@@ -11,10 +11,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { setUser } from "../../features/auth";
 import { profileClearSearch } from "../../features/currentGenres ";
 const DropDownMenu = ({ darkMode }) => {
-    const dispatch = useDispatch();
-    const { user, sessionId } = useSelector(
-        (state) => state?.user
-      );
+  const dispatch = useDispatch();
+  const { user, sessionId } = useSelector((state) => state?.user);
   const dropMenuLi = [
     {
       name: "Profile",
@@ -73,20 +71,17 @@ const DropDownMenu = ({ darkMode }) => {
     document.addEventListener("mousedown", handler);
 
     const logInUser = async () => {
-        if (token) {
-          if (sessionIdLocalStorag) {
-            getProfile(dispatch, setUser);
-          } else {
-            createSessionId();
-  
-            getProfile(dispatch, setUser);
-          }
+      if (token) {
+        if (sessionIdLocalStorag) {
+          getProfile(dispatch, setUser);
+        } else {
+          createSessionId();
+
+          getProfile(dispatch, setUser);
         }
-      };
-  logInUser()
-
-
-
+      }
+    };
+    logInUser();
   }, [token]);
   const [isLogin, setIslogin] = useState(true);
   if (isLogin) setTimeout(() => setIslogin(false), 2000);
@@ -188,11 +183,10 @@ const DropDownMenu = ({ darkMode }) => {
             transition={{ delay: 0.4, duration: 0.3 }}
             className="flex items-center justify-center gap-1"
           >
-            <p></p>
             <button
               onClick={() => fetchToken()}
               tabIndex={0}
-              className="btn btn-ghost normal-case text-base min-h-[41px] h-[41px] "
+              className="btn btn-ghost normal-case sm:text-base text-sm min-h-[41px] h-[41px] "
             >
               Login
             </button>

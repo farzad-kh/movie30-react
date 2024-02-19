@@ -122,7 +122,7 @@ const Navbar = () => {
         )}
 
         <section className=" gap-2 w-full   ">
-          <div className="form-control relative  sm:w-[259px]  w-[210px] ">
+          <div className="form-control relative  sm:w-[259px]  w-[200px]  ">
           
             <input
      
