@@ -2,13 +2,13 @@ import React, { useEffect, useState } from "react";
 
 import { useGetTvPopularQuery } from "../services/tmdbSlice";
 import MovieList from "../components/MovieList/MovieList";
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import Search from "../components/Search/Search";
-import { increment, decrement } from "../features/currentGenres ";
+ 
 import Loading from "../components/Loading/Loading";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
-import { MdArrowForwardIos, MdArrowBackIosNew } from "react-icons/md";
+
 import Pagination from "../components/module/Pagination";
 const TvPopular = () => {
 
@@ -19,7 +19,7 @@ const TvPopular = () => {
   
     page,
   } = useSelector((state) => state.currentGenres);
-  const { data, isFetching, isLoading, isError } = useGetTvPopularQuery({
+  const { data, isFetching } = useGetTvPopularQuery({
     page: page,
     media_type: "tv",
   });

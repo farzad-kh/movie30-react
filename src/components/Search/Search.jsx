@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useGetSearchQuery } from "../../services/tmdbSlice";
 import { motion } from "framer-motion";
-import Loading from "../Loading/Loading";
+import Loading from "../Loading/LoadingInfo";
 import MovieList from "../MovieList/MovieList";
 import { useSelector } from "react-redux";
 
@@ -12,7 +12,7 @@ const Search = () => {
     (state) => state.currentGenres
   );
 
-  const { data, isFetching } = useGetSearchQuery({
+  const { data, isFetching, isLoading } = useGetSearchQuery({
     searchQuery: searchQuery,
   });
 
@@ -26,7 +26,6 @@ const Search = () => {
 
   const [searchData, setSearchData] = useState([]);
   const backNavigate = useNavigate();
-  const [notFound, setNotFound] = useState(false);
 
   useEffect(() => {
     setSearchData(onlyMovieOrSeries);
@@ -34,14 +33,20 @@ const Search = () => {
     if (!searchIsActive && searchQuery === "") {
       backNavigate(-1);
     }
-    const timeout = setTimeout(() => {
-      if (searchData.length === 0 && searchIsActive && searchQuery.length > 0) {
-        setNotFound(true);
-      }
-    }, 2000);
-  
-    return () => clearTimeout(timeout);
+    // const timeout = setTimeout(() => {
+    //   if (searchData.length === 0 && searchIsActive && searchQuery.length > 0) {
+    //     setNotFound(true);
+    //   }
+    // }, 2000);
+
+    // return () => clearTimeout(timeout);
   }, [data]);
+  console.log(isLoading, isFetching, searchData.length);
+
+
+ 
+
+
 
   return (
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
@@ -53,6 +58,7 @@ const Search = () => {
       >
         {searchData?.length === 0 &&
         searchIsActive &&
+        !isFetching &&
         searchQuery.length > 0 ? (
           <motion.div
           initial={{ opacity: 0 }}
@@ -60,15 +66,15 @@ const Search = () => {
           transition={{ delay: 0.2, duration: 0.3 }}
           >
             <div className="w-full sm:text-lg text-base text-primary">
-              {notFound && ` No results found for ${searchQuery} 🙄`}
+              {` No results found for ${searchQuery} 🙄`}
             </div>
           </motion.div>
         ) : (
           <>
             <div id="movie" className="h-[20px] top-[-55px] relative "></div>
 
-            {isFetching ? (
-              <Loading color={"text-base-content"} />
+            {isFetching || isLoading ? (
+              <Loading color={"text-base-content"} label={"Searching..."} />
             ) : (
               <MovieList movies={searchData} isFetching={isFetching} />
             )}

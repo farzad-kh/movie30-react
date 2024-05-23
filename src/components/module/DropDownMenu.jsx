@@ -5,7 +5,7 @@ import { CgProfile } from "react-icons/cg";
 import { BsBookmarks } from "react-icons/bs";
 import { AiOutlineHeart } from "react-icons/ai";
 import { MdOutlineLogout } from "react-icons/md";
-import { bgProfile } from "../helper";
+ 
 import { fetchToken, moviesApi, createSessionId, getProfile } from "../utils";
 import { useDispatch, useSelector } from "react-redux";
 import { setUser } from "../../features/auth";
@@ -101,10 +101,8 @@ const DropDownMenu = ({ darkMode }) => {
               <div onClick={navigateHandler} className="dropdown-end dropdown ">
                 <div className="btn btn-ghost btn-circle avatar">
                   <div
-                    style={{
-                      background: `${bgProfile(user?.username?.charAt(0))}`,
-                    }}
-                    className={`w-10 rounded-full  flex items-center `}
+                    
+                    className={`w-10 rounded-full  flex items-center bg-[#bc3838ed] `}
                   >
                     <div className="items-center flex justify-center self-center w-full h-full text-[#efefef]  text-lg">
                       {user?.username?.charAt(0)}

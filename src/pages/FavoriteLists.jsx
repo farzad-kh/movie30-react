@@ -1,14 +1,14 @@
 import React, { useEffect, useState, useRef } from "react";
-import { motion } from "framer-motion";
+
 import { useSelector } from "react-redux";
 import Search from "../components/Search/Search";
-import { useNavigate } from "react-router-dom";
+
 import LoginOrSignUp from "./LoginOrSignUp";
 import { useGetListQuery } from "../services/tmdbSlice";
 import { useDispatch } from "react-redux";
 import { whatchListData } from "../features/currentGenres ";
 import { useGetListTvQuery } from "../services/tmdbSlice";
-import Movie from "../components/Movie/Movie";
+
 import Loading from "../components/Loading/Loading";
 import FavoriteList from "../components/layout/FavoriteList";
 

@@ -4,7 +4,7 @@ import {
   useGetTvPopularQuery,
   useGetTopRatedQuery,
 } from "../services/tmdbSlice";
-import MovieList from "./MovieList/MovieList";
+ 
 import Search from "./Search/Search";
 import { motion, useInView } from "framer-motion";
 import { useSelector } from "react-redux";
@@ -17,12 +17,12 @@ import SwiperMed from "../components/Swiper/SwiperMed";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import logo from "../asset/images/iuFNMS8U5cb6xfzi51Dbkovj7vM.jpg";
+ 
 
 import SwiperLarg from "./Swiper/SwiperLarg";
 import LoadingRow from "./Loading/LoadingRow";
 const Home = () => {
-  const { data, isFetching, isLoading, isError } = useGetPopularQuery(1);
+  const { data, isFetching, isError } = useGetPopularQuery(1);
   const { data: topRatedData, isFetching: topRatedIsFetch } =
     useGetTopRatedQuery(1);
   const { data: tvSeriesData, isFetching: tvSeriesIsFetch } =

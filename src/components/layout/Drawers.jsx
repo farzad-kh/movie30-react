@@ -15,7 +15,7 @@ import {
 import { IoMdClose } from "react-icons/io";
 
 import Ic from "../../asset/genres/index";
-
+ 
 const Drawers = () => {
   const dispatch = useDispatch();
   const { data } = useGetGenresQuery();
@@ -33,8 +33,6 @@ const Drawers = () => {
   );
 
   const location = useLocation();
-
-
 
   const categoryName = [
     {
@@ -72,7 +70,6 @@ const Drawers = () => {
   let newData = [];
   newData =
     data?.genres?.map((item, i) => {
-  
       return { ...item };
     }) || [];
   newData.unshift(obj);
@@ -117,7 +114,6 @@ const Drawers = () => {
               : setBackDropDra(false)
           }
         >
-
           <div
             className={`navbar z-[999999] pl-4 pr-4  transition-all duration-200   ease-in  text-primary sticky top-0  ${
               darkMode ? "bg-base-50 " : "bg-base-100"
@@ -132,7 +128,7 @@ const Drawers = () => {
                   <IoMdClose className="w-6 h-6" />
                 </div>
               )}
-
+             
               <label
                 onClick={() => setDarkMode(!darkMode)}
                 className="swap swap-rotate mr-3 "

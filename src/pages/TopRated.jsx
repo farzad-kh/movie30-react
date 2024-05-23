@@ -4,17 +4,16 @@ import { useGetTopRatedQuery } from "../services/tmdbSlice";
 import MovieList from "../components/MovieList/MovieList";
 import { motion } from "framer-motion";
 import Search from "../components/Search/Search";
-import { increment, decrement } from "../features/currentGenres ";
+
 import Loading from "../components/Loading/Loading";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { MdArrowForwardIos, MdArrowBackIosNew } from "react-icons/md";
+import { useSelector } from "react-redux";
+
 import Pagination from "../components/module/Pagination";
 const TopRated = () => {
   const { searchIsActive, searchQuery, page } = useSelector(
     (state) => state.currentGenres
   );
-  const { data, isFetching, isLoading, isError } = useGetTopRatedQuery({
+  const { data, isFetching } = useGetTopRatedQuery({
     page: page,
   });
 
